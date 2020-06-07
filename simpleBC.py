@@ -14,7 +14,7 @@ class block:
 
     def calculateHash(self):
 
-        return sha256( str(self.index) +(str(self.data)+ str(self.timestamp) + str(self.previousHash).encode())).hexdigest()
+        return sha256( (str(self.index) + str(self.data)+ str(self.timestamp) + str(self.previousHash) ).encode()).hexdigest()
 
 
 class blockchain:
@@ -28,25 +28,39 @@ class blockchain:
         
 
     def addBlock(self,data):
-        i=0
+        i=len(self.chain)
         preBlock=self.chain[-1]
         node=block(i+1,data,time.ctime(),preBlock.hash)
         self.chain.append(node)
 
     def printBlock(self):
         for i in range(0,len(self.chain)):
+            print(self.chain[i].index)
+            print(self.chain[i].data)
+            print(self.chain[i].previousHash)
+            print(self.chain[i].hash)
             print(self.chain[i].timestamp)
+            print("--------------------------------")
 
 
 kpCoin = blockchain()
 
 
-d=input('Enter data')
-p=input('Enter data')
+d=input('Enter data ')
+p=input('Enter data ')
 
 kpCoin.addBlock(d)
 kpCoin.addBlock(p)
+
+
 kpCoin.printBlock()
+
+kpCoin.chain[1].data='llllllllllll'
+
+
+kpCoin.printBlock()
+
+
 
 
 
