@@ -94,16 +94,28 @@ kpCoin = blockchain()
 kpCoin.addBlock(block(2,'KP',time.ctime()))
 
 # kpCoin.addBlock(block(3,'lllP',time.ctime()))
+<<<<<<< HEAD
+
+# kpCoin.printBlock()
+=======
+>>>>>>> 91ad13df5a15785fe6fcc5495d20260cd545f988
 
 # kpCoin.printBlock()
 
+<<<<<<< HEAD
+=======
 # kpCoin.printBlock()
 
+>>>>>>> 91ad13df5a15785fe6fcc5495d20260cd545f988
 # print(kpCoin.chain[1].data)
 
 kpCoin.chain[1].data='ppppppppppp'
 
+<<<<<<< HEAD
 kpCoin.chain[1].hash=kpCoin.chain[1]
+=======
+kpCoin.chain[1].hash=kpCoin.chain[1].calculateHash()
+>>>>>>> 91ad13df5a15785fe6fcc5495d20260cd545f988
 
 val=kpCoin.isValid()
 
