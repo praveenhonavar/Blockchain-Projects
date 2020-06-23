@@ -22,7 +22,7 @@ App = {
   },
 
   initContract: function() {
-    $.getJSON("Election.json", function(election) {
+    $.getJSON("../Election.json", function(election) {
       // Instantiate a new truffle contract from the artifact
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
@@ -40,6 +40,34 @@ App = {
                 App.account = account;
             }
         });
+
+        App.contracts.Election.deployed().then(
+          function (instance) {
+            return instance.candidates(1);
+          }).then(
+            function (candidate) {
+              console.log(candidate[0].toNumber());
+              console.log(candidate[1]);
+              console.log(candidate[2].toNumber());
+
+              document.getElementById('candidate1').innerHTML=candidate[1];  
+              document.getElementById('candidate1voteid').innerHTML=candidate[2];  
+            }
+          )  
+
+          App.contracts.Election.deployed().then(
+            function (instance) {
+              return instance.candidates(2);
+            }).then(
+              function (candidate) {
+                console.log(candidate[0].toNumber());
+                console.log(candidate[1]);
+                console.log(candidate[2].toNumber());
+  
+                document.getElementById('candidate2').innerHTML=candidate[1];  
+                document.getElementById('candidate2voteid').innerHTML=candidate[2];  
+              }
+            )  
   },
 
 };
