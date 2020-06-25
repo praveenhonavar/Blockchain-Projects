@@ -27,6 +27,7 @@ App = {
       App.contracts.Election = TruffleContract(election);
       // Connect provider to interact with contract
       App.contracts.Election.setProvider(App.web3Provider);
+      App.listen();
 
       return App.render();
     });
@@ -67,8 +68,49 @@ App = {
                 document.getElementById('candidate2').innerHTML=candidate[1];  
                 document.getElementById('candidate2voteid').innerHTML=candidate[2];  
               }
-            )  
+            )
+            
+            
+            
   },
+
+  vote1 : function() {
+    
+  App.contracts.Election.deployed().then(
+    function(instance){
+      return instance.addVote(1);
+    }).then(
+      console.log('votted')
+    )
+    },
+
+    vote2:function () {
+      App.contracts.Election.deployed().then(
+        function (instance) {
+          return instance.addVote(2);
+        }).then(
+          console.log('voted') 
+        )
+    },
+
+    listen:function () {
+      App.contracts.Election.deployed().then(
+        function (instance) {
+          instance.eventVote({},
+            {
+              fromBlock:'latest',
+              toBlock:'latest'
+            })
+        .watch(function(err,event) {
+          App.render()
+        })
+        });
+        
+    }
+
+    
+
+
 
 };
 
