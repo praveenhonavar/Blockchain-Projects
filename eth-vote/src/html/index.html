@@ -5,10 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Voting Dapp</title>
+    <title>BlockVote</title>
 
     <!-- Bootstrap -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <!-- <link href="../css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -18,15 +19,25 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body style="background-color: lightslategrey;text-align: center; margin-top: 40px;">
 
-    <div class='content'>
+  <body>
+
+    <div class='container'>
       
-      <table id ='vtable'>
-        <p>
-            <h1>VOTE-DETAILS</h1>
-        </p>
+        <h1>
+          Experience the new 
+          <span>
+            System of Voting 
+          </span>
+        </h1> 
 
+      <h3>Voting Details</h1>
+
+       <h3>Choose wisely you only get One chance
+        </h3> 
+
+
+      <table id ='vtable'>
         <tr>
             <th id ='candidate1'>
                 CANDIATE-1
@@ -46,20 +57,20 @@
             <td id='candidate2voteid'>
                 N/A
             </td>
+
         </tr>
     </table>
 
-    <button class='button' id='vote1' onclick="return App.vote1()">VOTE FOR C1</button>
+ 
+  <button class='button' id='vote1' onclick="return App.vote1()">VOTE FOR C1</button>
+  <button class='button' id='vote2' onclick="return App.vote2()">VOTE FOR C2</button>
 
-    <button class='button' id='vote2' onclick="return App.vote2()">VOTE FOR C2</button>
-
+ 
+    
     </div>
 
 
-    
-
-
-    
+      
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
