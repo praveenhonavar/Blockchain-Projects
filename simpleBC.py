@@ -1,33 +1,21 @@
 import hashlib 
 import time 
 
-
 class block:
-
     def __init__(self,index,data,timestamp,previousHash=''):
-
         self.index=index
         self.data=data
         self.timestamp=timestamp
         self.previousHash=previousHash
         self.hash=self.calculateHash()
 
-
-
     def calculateHash(self):
-        # return sha256((str(self.index) + str(self.data)+ str(self.timestamp) + str(self.previousHash)).encode()).hexdigest()
-        
+        # return sha256((str(self.index) + str(self.data)+ str(self.timestamp) + str(self.previousHash)).encode()).hexdigest()        
         h=hashlib.sha256()
         h.update( str(self.index).encode('utf-8') + str(self.data).encode('utf-8')+ str(self.timestamp).encode('utf-8') + str(self.previousHash).encode('utf-8') )
-        
- 
-        return h.hexdigest()
+        return h.hexdigest() 
         
         
-
-
-
-
 class blockchain:
 
     def __init__(self):
@@ -37,49 +25,36 @@ class blockchain:
         return block(1,'genesisBlock',time.ctime(),'0000')
 
     def getLatest(self):
-        # print(self.chain[-1].hash)
         return self.chain[-1]
 
     def isValid(self):
         i=1
-        l=len(self.chain)
+        self.chain.append(block('0','lokl',time.ctime(),self.chain[-1].hash))
 
+        while(i <= len(self.chain)): 
+            prevBlock=self.chain[i-1]
 
-        while(i < len(self.chain)):
-            currentBlock=self.chain[i]
-            # prevBlock=self.chain[i-1]
-            # fwd=self.chain[i+1]          
+            try:
+                currentBlock=self.chain[i]
 
-            if(currentBlock.hash != currentBlock.calculateHash()):
-                i+=1
-                return False
+                if(currentBlock.hash != currentBlock.calculateHash()):
+                    return False
 
-            # if(currentBlock.previousHash != prevBlock.hash):
-            #     i+=1
-            #     return False
+                if(prevBlock.hash != currentBlock.previousHash):
+                    return False
+
+            except:
+                pass
 
             i+=1
-
-        cb=self.chain[l-1]
-        pb=self.chain[l-2]
-
-        if(cb.previousHash != pb.hash):
-            return False
-        
         return True
 
-
     def addBlock(self,newblock):
-
         newblock.previousHash=self.getLatest().hash
         newblock.hash=newblock.calculateHash()
-        # print(newblock.data)
         self.chain.append(newblock)
 
-
-        
     def printBlock(self):
-        
         for i in range(0,len(self.chain)):
             print(self.chain[i].index)
             print(self.chain[i].data)
@@ -89,38 +64,21 @@ class blockchain:
             print("-----------++++++++--------------")
 
 
-kpCoin = blockchain()
+bc=blockchain()
 
-kpCoin.addBlock(block(2,'KP',time.ctime()))
+bc.addBlock(block(2,'pd',time.ctime()))
+bc.addBlock(block(3,'d',time.ctime()))
+bc.addBlock(block(4,'p',time.ctime()))
 
-# kpCoin.addBlock(block(3,'lllP',time.ctime()))
-<<<<<<< HEAD
+bc.printBlock()
 
-# kpCoin.printBlock()
-=======
->>>>>>> 91ad13df5a15785fe6fcc5495d20260cd545f988
+bc.chain[2].data='loo'
+bc.chain[2].hash=bc.chain[2].calculateHash()
+bc.printBlock()
 
-# kpCoin.printBlock()
+val=bc.isValid()
 
-<<<<<<< HEAD
-=======
-# kpCoin.printBlock()
+bc.printBlock()
 
->>>>>>> 91ad13df5a15785fe6fcc5495d20260cd545f988
-# print(kpCoin.chain[1].data)
-
-kpCoin.chain[1].data='ppppppppppp'
-
-<<<<<<< HEAD
-kpCoin.chain[1].hash=kpCoin.chain[1]
-=======
-kpCoin.chain[1].hash=kpCoin.chain[1].calculateHash()
->>>>>>> 91ad13df5a15785fe6fcc5495d20260cd545f988
-
-val=kpCoin.isValid()
-
-# print(kpCoin.chain[1].hash)
-
-kpCoin.printBlock()
 
 print(val)
