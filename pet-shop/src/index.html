@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script> -->
+
+</head>
+
+<body>
+
+    <div>
+        <p class="head">
+            HERE
+        </p>
+    </div>
+
+    <div>
+        <input type="text" name="enter" id="text">
+        <button class="enter">
+            enter
+        </button>
+    </div>
+
+    <div>
+        <button class="show" onclick="return App.show()">
+            Show
+        </button>
+    </div>
+
+
+
+</body>
+
+<script src="js/truffle-contract.js"></script>
+<script src="js/web3.min.js"></script>
+<script src="js/app.js"></script>
+
+
+
+<!-- // var web3;
+
+// if(typeof web3 !== 'undefined'){
+//     web3 = new Web3(web3.currentProvider);
+// }
+
+// else{
+//     web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"))
+// }
+
+
+// var appContract = new web3.eth.Contract(
+//     [
+// 	{
+// 		"constant": false,
+// 		"inputs": [
+// 			{
+// 				"internalType": "string",
+// 				"name": "n",
+// 				"type": "string"
+// 			}
+// 		],
+// 		"name": "setName",
+// 		"outputs": [],
+// 		"payable": false,
+// 		"stateMutability": "nonpayable",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"inputs": [],
+// 		"payable": false,
+// 		"stateMutability": "nonpayable",
+// 		"type": "constructor"
+// 	},
+// 	{
+// 		"constant": true,
+// 		"inputs": [],
+// 		"name": "name",
+// 		"outputs": [
+// 			{
+// 				"internalType": "string",
+// 				"name": "",
+// 				"type": "string"
+// 			}
+// 		],
+// 		"payable": false,
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	},
+// 	{
+// 		"constant": true,
+// 		"inputs": [],
+// 		"name": "show",
+// 		"outputs": [
+// 			{
+// 				"internalType": "string",
+// 				"name": "",
+// 				"type": "string"
+// 			}
+// 		],
+// 		"payable": false,
+// 		"stateMutability": "view",
+// 		"type": "function"
+// 	}
+// ],
+// "0x058128794b4c53D4B25D006378e300404635240a",
+// {
+//     from:'0xc5bE3826B79C5AfcC76ff79448cEA98282594747'
+// }
+// ); // ABI instance
+
+// var app = appContract;
+// console.log(app);
+
+// app.methods.show().call().then(
+//     function (n) {
+//         $('.head').html(n)
+//     }
+// )
+
+// $('.enter').click(
+//     function () {
+//         var name = $('#text').val();
+//         console.log(name);
+//         app.methods.setName(name).send();
+//     }
+// )
+
+// // app.methods.setName('sonu').send();
+
+// $('.show').click(
+//     function () {
+//         app.methods.show().call().then(
+//             function (n) {
+//                 $('.head').html(n)
+//             }
+//         )
+//     }
+// ) -->
+
+
+
+</html>
