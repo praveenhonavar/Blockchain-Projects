@@ -1,8 +1,8 @@
 pragma solidity >=0.4.22 <0.7.0;
-
 contract insurance{
     
     address owner;
+    
 
     struct citizen{
         bool uniqueId;
@@ -10,12 +10,12 @@ contract insurance{
         uint amount;
     }
     
-    mapping(bytes32 => citizen) public citizenMapping;
+    mapping(uint => citizen) public citizenMapping;
     
     mapping(address=>bool) public doctorMapping;
     
     
-    constructor () public{
+    constructor() public{
         owner=msg.sender;
     }
     
@@ -30,10 +30,12 @@ contract insurance{
         doctorMapping[_address]=true;
     }
     
-    function setCitizen(string memory name,uint amount) public onlyOwner returns (bytes32){
+    function setCitizen(uint uid,string memory name,uint amount) public onlyOwner returns (uint){
         
-        bytes32 uid=(sha256(abi.encode(msg.sender,now)));
+        // bytes32 uid=(sha256(abi.encode(msg.sender,now)));
         
+
+
         require(!citizenMapping[uid].uniqueId);
         
         citizenMapping[uid].uniqueId=true;
@@ -43,8 +45,12 @@ contract insurance{
         return uid;
 
     }
+
+    function showCitizen(uint uid) public view returns (string memory){
+            return  citizenMapping[uid].name;
+    }
     
-    function claimAmount(bytes32 uid,uint requiredAmount) public returns (string memory) {
+    function claimAmount(uint uid,uint requiredAmount) public returns (string memory) {
         
         require(doctorMapping[msg.sender]);
         require(citizenMapping[uid].amount >= requiredAmount);

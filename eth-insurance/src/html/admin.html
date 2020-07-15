@@ -1,79 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>eth-insurance</title>
 
-    <!-- Bootstrap -->
-    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>eth-insurance</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body>
+<body>
 
-    <header>
-      <h1>
-          ADMIN DASHBOARD
-      </h1>
-    </header>
+  <header>
+
+    <h1>
+      ADMIN DASHBOARD
+    </h1>
+
+  </header>
+
+  <div class="container">
 
     <div class="patient">
-        <form class="name">
-            <input type="text">
+      <ul>
+        <form>
+          <input type="text" class="id" placeholder="Patient-id">
         </form>
 
-        <form class="amount">
-            <input type="text">
+        <form>
+          <input type="text" class="name" placeholder="Insurance-Holder-Name">
         </form>
+
+        <form>
+          <input type="text" class="amount" placeholder="Insurance-Amount">
+        </form>
+      </ul>
   
-
-    <button class='add-patient' >
-        Add Patient
+    <button class='add-patient' onclick="App.addPatient()">
+      Add Patient
     </button>
 
   </div>
 
-
-  <div class="doctor">
-    <form class="address">
-        <input type="text">
-    </form>
-
-    
+  <ul>
 
 
-<button class='add-doctor' >
-    Add Doctor
-</button>
-
-</div>
-
-
-
-
-   
-
+      <form>
+        <input type="text" placeholder="Patient-id" class="puid">
+      </form>
   
+      <button class='show' onclick="App.showCitizen()">
+        show
+      </button>
+
+
+      <form>
+        <input type="text" placeholder="Doctor-Address" class="address">
+      </form>
+
+
+      <button class='add-doctor' onclick="App.addDoctor()">
+        Add Doctor
+      </button>
 
     
-    
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/web3.min.js"></script>
-    <script src="js/truffle-contract.js"></script>
-    <script src="js/app.js"></script>
+  </ul>
+   
+  </div>
 
 
-  </body>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="../js/truffle-contract.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/web3.min.js"></script>
+
+</body>
+
 </html>

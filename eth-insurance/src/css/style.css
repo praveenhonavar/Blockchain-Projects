@@ -1,0 +1,47 @@
+body{
+    background-color: #042e4b;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    text-align: center;
+}
+
+/* .patient,.add-patient{
+    display: flex;   
+} */
+
+.name,.amount,.id,.pid,.address,.details,.required-amount{
+
+    margin: 1.5em;
+    border-radius: 2em;
+    height: 3em;
+    width: 20em;
+    text-align: center;
+    
+}
+
+.add-patient,.show,.add-doctor{
+
+    margin: 1.5em;
+    border-radius: 2em;
+    height: 3em;
+    width: 15em;
+    text-align: center;
+    background-color:blueviolet;
+    margin-left: 7em;
+
+}
+
+.container{
+    /* display: flex; */
+}
+
+.patient-container{
+    border-radius: 2em;
+}
+
+
+
