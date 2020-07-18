@@ -4,6 +4,7 @@ contract Marketplace{
     
     string sellerName;
     uint uniqueId = 0;
+    uint  public amount ;
     
     // mapping(address=>string) public sellerMapping;
    
@@ -16,31 +17,24 @@ contract Marketplace{
     mapping(uint => sellBook) public bookMapping;
     
 
-    function sell(string memory bookName , uint price) public returns (uint){
+    function sell(string memory bookName ,uint price) public returns (uint){
         
         // bytes32 uniqueId = sha256(abi.encode(msg.sender,bookName));
         
         uniqueId+=1;
-    
         bookMapping[uniqueId].sellerAddres=msg.sender;
         bookMapping[uniqueId].price= price;
         bookMapping[uniqueId].bookName=bookName;
-        
         return uniqueId;
     
     }
     
     function buy(uint uniqueId) public payable {
         sellBook memory book = bookMapping[uniqueId];
-        uint amount = book.price;
-        address payable sellerAddres =book.sellerAddres;
-        
-        address(sellerAddres).transfer(msg.value);
-        
+        amount = book.price;
+        address payable sellerAddres = book.sellerAddres;
+        sellerAddres.transfer(msg.value);
         
     }
     
 }    
-    
-    
-    
