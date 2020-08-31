@@ -117,10 +117,11 @@ App = {
         App.contracts.Insurance.deployed().then(
             function (instance) {
                 instance.setCitizen(uid,name,amount).then(
-                console.log('donee'),
+                // console.log('donee'),
                 instance.showCitizen(uid).then(
                     function (params) {
-                        console.log(params);
+                        console.log(params)
+                        // $('.disp').html(params)
                     }
                 )
                 )

@@ -21,7 +21,7 @@
 
   </head>
 
-  <body>
+  <body class='doc'>
 
     <header>
       <h1>
@@ -30,7 +30,7 @@
     </header>
 
     
-    <div class="details">
+    <div class="doc">
 
         <form>
             <input type="text" placeholder="Patient's Unique-Id" class="pid">
@@ -40,12 +40,14 @@
             <input type="text" placeholder="Amount to be claimed" class="required-amount">
         </form>
 
+        <button class='claim' onclick="App.claim()">
+          Claim
+        </button>
+
        
     </div>
 
-    <button class='claim' onclick="App.claim()">
-        Claim
-    </button>
+   
 
    
 

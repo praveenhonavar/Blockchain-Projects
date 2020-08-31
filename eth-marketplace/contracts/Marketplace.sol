@@ -1,40 +1,50 @@
-pragma solidity >=0.4.22 <0.7.0;
+pragma solidity >=0.4.22 < 0.7.0;
 
 contract Marketplace{
     
     string sellerName;
     uint uniqueId = 0;
-    uint  public amount ;
+    uint  public amount;
     
     // mapping(address=>string) public sellerMapping;
    
-    struct sellBook{
-        address payable sellerAddres;
-        uint price;
+    struct Books{
+        address payable sellerAddress;
         string bookName;
+        uint price;
+        
     }
-    
-    mapping(uint => sellBook) public bookMapping;
-    
 
-    function sell(string memory bookName ,uint price) public returns (uint){
-        
-        // bytes32 uniqueId = sha256(abi.encode(msg.sender,bookName));
-        
-        uniqueId+=1;
-        bookMapping[uniqueId].sellerAddres=msg.sender;
-        bookMapping[uniqueId].price= price;
-        bookMapping[uniqueId].bookName=bookName;
+    event bookAdded(
+        uint uniqueId,
+        string bookName,
+        uint price,
+        address payable sellerAddress
+    );
+
+    event bookPurchased(
+        uint uniqueId,
+        address buyer,
+        address seller
+    );
+
+    mapping(uint => Books) public bookMapping;
+
+    function sell(string memory _bookName,uint _price)public returns (uint){
+        uniqueId ++;
+        bookMapping[uniqueId].sellerAddress = msg.sender;
+        bookMapping[uniqueId].price = _price;
+        bookMapping[uniqueId].bookName = _bookName;
+        emit bookAdded(uniqueId,_bookName,_price,msg.sender);
         return uniqueId;
-    
     }
-    
-    function buy(uint uniqueId) public payable {
-        sellBook memory book = bookMapping[uniqueId];
-        amount = book.price;
-        address payable sellerAddres = book.sellerAddres;
-        sellerAddres.transfer(msg.value);
-        
+
+    function buy(uint _uniqueId) public payable{
+        Books memory book = bookMapping[_uniqueId];
+        // address payable _seller = book.sellerAddress;
+        require(book.sellerAddress != msg.sender);
+        require(msg.value >= book.price);
+        book.sellerAddress.transfer(msg.value);
+        emit bookPurchased(_uniqueId,msg.sender,book.sellerAddress);
     }
-    
-}    
+}

@@ -13,7 +13,7 @@ header{
     display: flex;   
 } */
 
-.name,.amount,.id,.pid,.address,.details,.required-amount{
+.name,.amount,.id,.puid,.address,.details,.required-amount,.pid{
 
     margin: 1.5em;
     border-radius: 2em;
@@ -23,7 +23,7 @@ header{
     
 }
 
-.add-patient,.show,.add-doctor{
+.add-patient,.show,.add-doctor,.claim{
 
     margin: 1.5em;
     border-radius: 2em;
@@ -42,6 +42,9 @@ header{
 .patient-container{
     border-radius: 2em;
 }
+
+
+
 
 
 

@@ -5,33 +5,11 @@ App = {
   account: '0x0',
 
   init:  function () {
-     
       return  App.initWeb3();
   },
 
-  // initWeb3: function () 
-  // {
-  //     // // if (typeof web3 !== 'undefined') {
-  //     //     App.web3Provider = web3.currentProvider;
-  //     //     web3 = new Web3(web3.currentProvider);
-
-  //     // }
-
-  
-  //         App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
-  //         web3 = new Web3(App.web3Provider);
-
-
-  //         console.log('hereeee');
-
-      
-
-  //     // console.log('hereeee');
-  //     return App.initContract();
-
-  // },
-
   initWeb3:function(){
+
     if (window.ethereum) {
       App.web3Provider = window.ethereum;
       try {
@@ -50,30 +28,23 @@ App = {
     else {
       App.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
     }
+
     web3 = new Web3(App.web3Provider);
 
     return App.initContract();
     
   },
 
-
-
-
   initContract: function() {
-      $.getJSON("../test.json",
-          function (demo) {
+      $.getJSON("../Marketplace.json",
+          function (marketplace) {
             // console.log('hereeeeppwdpwdp');
             // console.log(instance);
 
-              App.contracts.Demo = TruffleContract(demo);
-
-
-              App.contracts.Demo.setProvider(App.web3Provider);
+              App.contracts.Marketplace = TruffleContract(marketplace);
+              App.contracts.Marketplace.setProvider(App.web3Provider);
 
               // console.log('sccc',App.contracts.Demo);
-
-
-
               return App.render();
 
           }
@@ -82,75 +53,111 @@ App = {
   },
 
   render: function () {
-
-      // web3.eth.getCoinbase(function(err, account) {
-      //     if (err === null) {
-      //         App.account = account;
-      //         console.log('mmmmmmmmmmmmmmm');
-      //         console.log(App.account);
-      //     }
-      // });
-
-      // var DemoInstance;
-
-      //   function (d) {
-      //     console.log(d);
-      //   }
-      // ));
       console.log(web3.eth);
+      console.log('ppppppp',App.contracts.Marketplace);
 
-      // web3.eth.getAccounts().then(
-      //   function (params) {
-      //     console.log(params);
-      //   }
-      // )
-
-      console.log('ppppppp',App.contracts.Demo);
-
-      App.contracts.Demo.deployed().then(
+      App.contracts.Marketplace.deployed().then(
           function (instance) {
-            console.log('hoohohoh',instance);
-              DemoInstance = instance;
-             console.log(DemoInstance);
+            // console.log('hoohohoh',instance);
+              MarketInstance = instance;
+              
+              // console.log(MarketInstance.bookMapping);
+              // while(i < uniq)
+              MarketInstance.bookMapping(3).then(
+                function (results) {
+                  console.log(results);
+                }
+              )
+  
+
+            //  console.log(MarketInstance);
           }
       )
 
   },
 
-  show: function () {
-    App.contracts.Demo.deployed().then(
-      function (instance) {
-        showInstance = instance
-        console.log(showInstance.show().then(
-          function 
-          (params) {
-            console.log(params);
-            $('.head').html(params)
-          }
-        ));
-        
 
-      }
-    );
-    },
+  sell:function () {
 
-    enter:function () {
+    var bookName=$('.book-name').val();
+    var price=$('.price').val();
 
-      var name=$('.text').val()
-      console.log(name);
+    MarketInstance.sell(bookName,price)
 
-      App.contracts.Demo.deployed().then(
-        function (instance) {
-          instance.setName(name,{from:'0xc5bE3826B79C5AfcC76ff79448cEA98282594747'})
+    var addEvent = MarketInstance.bookAdded();
+
+    addEvent.watch(
+      function (err,results) {
+        if(!err){
+          // $('#loader').hide();
+          $('.Books').html(results.args.bookName);
+          console.log(results);
         }
-      )
-    }
+      }
+    )
+
+    // App.contracts.Marketplace.deployed().then(
+    //   function (instance) {
+    //     console.log(instance);
+    //     instance.sell(bookName,price).then(
+    //       function (data) {
+    //         console.log(data);
+    //       }
+    //     )
+    //   }
+    // )
+
+  },
 
 
+
+  // show:function () {
+  //   App.contracts.Marketplace.deployed().then(
+  //     function (instance) {
+  //       // console.log(instance);
+  //       instance.bookMapping(2).then(
+  //         function (book) {
+  //           console.log(book);
+  //         }
+  //       )
+            
+  //     }
+  //   )
+
+  // }, 
+
+  buy:function () {
+  
+    var uniqueId= $('.uniqueId').val();
+    MarketInstance.buy(uniqueId);
+
+    var buyEvent = MarketInstance.bookPurchased();
+
+    buyEvent.watch(
+      function (err,results) {
+          if(!err){
+            console.log(results);
+          }
+      }
+    )
+  
+  }
+
+  
 }
 
+// $( 
+//   $(window).load(function () {
+//     App.init();
+// })
+// )
 $(function () {
-  $(window).load(function () {
-      App.init();
-  });
-});
+  $(window).on('load',
+      function () {
+        App.init();
+      }
+    )
+}
+)
+
+
