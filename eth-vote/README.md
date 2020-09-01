@@ -58,4 +58,16 @@ npm run dev
 
 * Screenshots
 
-()
+![landingpage1](https://github.com/praveenhonavar/Blockchain-Projects/blob/master/eth-vote/output-screenshot/landingpage-1.png)
+
+![landingpage2](https://github.com/praveenhonavar/Blockchain-Projects/blob/master/eth-vote/output-screenshot/landingpage-3.png)
+
+![vote](https://github.com/praveenhonavar/Blockchain-Projects/blob/master/eth-vote/output-screenshot/votepage-1.png)
+
+![confirm](https://github.com/praveenhonavar/Blockchain-Projects/blob/master/eth-vote/output-screenshot/user1-confirming-vote.png)
+
+![Approved](https://github.com/praveenhonavar/Blockchain-Projects/blob/master/eth-vote/output-screenshot/user1-voting-approved.png)
+
+![final](https://github.com/praveenhonavar/Blockchain-Projects/blob/master/eth-vote/output-screenshot/user3-approved.png)
+
+
