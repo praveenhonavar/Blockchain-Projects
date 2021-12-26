@@ -79,7 +79,7 @@ App = {
     
   App.contracts.Election.deployed().then(
     function(instance){
-      return instance.addVote(1);
+      return instance.addVote(1,{ from: App.account,gas: 184000, chainId:1337 });
     }).then(
       console.log('votted')
     )
@@ -88,7 +88,7 @@ App = {
     vote2:function () {
       App.contracts.Election.deployed().then(
         function (instance) {
-          return instance.addVote(2);
+          return instance.addVote(2,{ from: App.account,gas: 184000, chainId:1337 });
         }).then(
           console.log('voted') 
         )
